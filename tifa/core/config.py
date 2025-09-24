@@ -229,3 +229,24 @@ class Config:
         "ssl_cert_serial": r'\b[0-9A-Fa-f]{2}(?::[0-9A-Fa-f]{2}){7,19}\b',
         "base64_encoded": r'(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?'
     }
+
+    # Social Media Crawling Configuration
+    SOCIAL_MEDIA_CONFIG = {
+        "twitter": {
+            "bearer_token": os.getenv("TWITTER_BEARER_TOKEN", ""),
+            "enabled": bool(os.getenv("TWITTER_BEARER_TOKEN"))
+        },
+        "reddit": {
+            "client_id": os.getenv("REDDIT_CLIENT_ID", ""),
+            "client_secret": os.getenv("REDDIT_CLIENT_SECRET", ""),
+            "user_agent": os.getenv("REDDIT_USER_AGENT", "TIFA:threat-intel:v1.0 (by /u/yourusername)"),
+            "enabled": bool(os.getenv("REDDIT_CLIENT_ID") and os.getenv("REDDIT_CLIENT_SECRET"))
+        }
+    }
+
+    # Default subreddits for threat intelligence
+    DEFAULT_THREAT_SUBREDDITS = [
+        'cybersecurity', 'netsec', 'malware', 'AskNetsec',
+        'ComputerSecurity', 'InfoSecNews', 'blackhat', 'ReverseEngineering'
+    ]
+    
